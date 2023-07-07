@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,27 +39,16 @@ public class ProductoServiceImpl implements ProductoService{
 	}
 
 	@Override
-	public Producto buscarPorFecha(Instant fecha) {
+	public int borrarPorNombre(String nombre) {
 		// TODO Auto-generated method stub
-		return this.productoRepository.seleccionarPorFecha(fecha);
+		return this.productoRepository.eliminarPorNombre(nombre);
 	}
 
 	@Override
-	public List<Producto> buscarListaPorFecha(Instant fecha) {
+	public int actualizarPorNombreFecha(String nombre, LocalDate fechaC) {
 		// TODO Auto-generated method stub
-		return this.productoRepository.seleccionarListaPorFecha(fecha);
+		return this.productoRepository.actualizarPorNombreFecha(nombre, fechaC);
 	}
 
-	@Override
-	public Producto buscarPorPrecio(BigDecimal precio) {
-		// TODO Auto-generated method stub
-		return this.productoRepository.seleccionarPorPrecio(precio);
-	}
-
-	@Override
-	public List<Producto> buscarListaPorPrecio(BigDecimal precio) {
-		// TODO Auto-generated method stub
-		return this.productoRepository.seleccionarListaPorPrecio(precio);
-	}
 
 }

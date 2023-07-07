@@ -2,6 +2,7 @@ package com.example.demo.respository;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -44,32 +45,21 @@ public class ProductoRepositoryImpl implements ProductoRepository{
 	}
 
 	@Override
-	public Producto seleccionarPorFecha(Instant fecha) {
-		Query myQuery = this.entityManager.createQuery("SELECT e FROM Producto e WHERE e.fecha = :datoFecha");
-		myQuery.setParameter("datoFecha", fecha);
-		return (Producto) myQuery.getSingleResult();
+	public int eliminarPorNombre(String nombre) {
+		Query miQuery = this.entityManager.createQuery("DELETE FROM Producto e Where e.nombre=:datoNombre");
+		miQuery.setParameter("datoNombre", nombre);
+
+		return miQuery.executeUpdate();
 	}
 
 	@Override
-	public List<Producto> seleccionarListaPorFecha(Instant fecha) {
-		Query myQuery = this.entityManager.createQuery("SELECT e FROM Producto e WHERE e.fecha = :datoFecha");
-		myQuery.setParameter("datoFecha", fecha);
-		return myQuery.getResultList();
+	public int actualizarPorNombreFecha(String nombre, LocalDate fechaC) {
+		Query miQuery = this.entityManager.createQuery("UPDATE Producto e SET e.fechaCaducidad=:datoFecha WHERE e.nombre=:datoNombre");
+		miQuery.setParameter("datoNombre",nombre);
+		miQuery.setParameter("datoFecha", fechaC);
+	    return	miQuery.executeUpdate();
 	}
 
-	@Override
-	public Producto seleccionarPorPrecio(BigDecimal precio) {
-		TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT e FROM Producto e WHERE e.precio = :datoPrecio", Producto.class);
-		myQuery.setParameter("datoPrecio", precio);
-		return myQuery.getSingleResult();
-	}
-
-	@Override
-	public List<Producto> seleccionarListaPorPrecio(BigDecimal precio) {
-		TypedQuery<Producto> myQuery = this.entityManager.createQuery("SELECT e FROM Producto e WHERE e.precio = :datoPrecio", Producto.class);
-		myQuery.setParameter("datoPrecio", precio);
-		return myQuery.getResultList();
-	}
-
+	
 
 }

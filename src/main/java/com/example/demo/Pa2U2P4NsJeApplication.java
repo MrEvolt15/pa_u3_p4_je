@@ -14,6 +14,7 @@ import com.example.demo.repository.modelo.Cliente;
 import com.example.demo.repository.modelo.Producto;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.EstudianteService;
+import com.example.demo.service.ProductoService;
 
 
 @SpringBootApplication
@@ -21,6 +22,9 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 
 	@Autowired
 	private ClienteService clienteService;
+	@Autowired
+	private ProductoService productoService;
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U2P4NsJeApplication.class, args);
@@ -70,9 +74,10 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 		
 		//this.clienteService.guardar(c2);
 		//this.clienteService.guardar(c1);
-		this.clienteService.buscarParaRifa("Joel", carrito2.get(0).getPrecio());
-		//Cliente rifado=this.clienteService.buscarParaRifa("Joel", carrito2.get(0).getPrecio());
-		//System.out.println(rifado);
+		//this.clienteService.buscarParaRifa("Joel", carrito2.get(0).getPrecio());
+		this.productoService.actualizarPorNombreFecha("Granola VItalty 400g",LocalDate.of(2024, 2, 15));
+		this.productoService.borrarPorNombre("Ruflex 530g");
+		
 	}
 
 }
