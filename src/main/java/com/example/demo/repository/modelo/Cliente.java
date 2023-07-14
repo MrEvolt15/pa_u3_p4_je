@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,7 +29,7 @@ public class Cliente {
 	@Column(name = "cli_genero")
 	private String genero;
 	
-	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Producto> productos;
 	public Integer getId() {
 		return id;
@@ -63,8 +64,8 @@ public class Cliente {
 	}
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nomCli=" + nomCli + ", cedula=" + cedula + ", genero=" + genero + ", productos="
-				+ productos + "]";
+		return "Cliente [id=" + id + ", nomCli=" + nomCli + ", cedula=" + cedula + ", genero=" + genero 
+				+ "]";
 	}
 	
 	

@@ -1,10 +1,12 @@
 package com.example.demo.respository;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.repository.modelo.Cliente;
+import com.example.demo.repository.modelo.Producto;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -65,6 +67,58 @@ public class ClienteRepositoryImpl implements ClienteRepository{
 
 		TypedQuery<Cliente> myQueryFinal = this.entityManager.createQuery(myCriteriAQuery);
 		return myQueryFinal.getSingleResult();
+	}
+
+	@Override
+	public List<Cliente> seleccionarOuterRightJoin() {
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c RIGHT JOIN c.productos p",
+				Cliente.class);
+
+		return myQuery.getResultList();
+	}
+	
+
+	@Override
+	public List<Cliente> seleccionarOuterLeftJoin() {
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c LEFT JOIN c.productos p",
+				Cliente.class);
+
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Producto> seleccionarProductoOuterLeftJoin() {
+		TypedQuery<Producto> myQuery = this.entityManager
+				.createQuery("SELECT p FROM Cliente c LEFT JOIN c.productos p", Producto.class);
+		
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Cliente> seleccionarOuterFullJoin() {
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c FULL JOIN c.productos p",
+				Cliente.class);
+
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Cliente> seleccionarJoinWhere() {
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c, Producto p WHERE c=p.cliente ",
+				Cliente.class);
+
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<Cliente> seleccionarInnerJoin() {
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c JOIN c.productos p",
+				Cliente.class);
+		List<Cliente> miLista = myQuery.getResultList();
+		for (Cliente c : miLista) {
+			c.getProductos().size();
+		}
+		return miLista;
 	}
 
 }
