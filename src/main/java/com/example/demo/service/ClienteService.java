@@ -19,4 +19,6 @@ public interface ClienteService {
 	public List<Producto> buscarProductoOuterLeftJoin();
 	public List<Cliente> buscarOuterFullJoin();
 	public List<Cliente> buscarJoinWhere();
+	
+	public List<Cliente> buscarFetchJoin();
 }

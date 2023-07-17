@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.repository.modelo.Cliente;
 import com.example.demo.repository.modelo.MateriaPrima;
 
 import com.example.demo.repository.modelo.ProductoFinal;
@@ -66,6 +67,13 @@ public class ProductoFinalRepositoryImpl implements ProductoFinalRepository{
 		TypedQuery<ProductoFinal> myQuery = this.entityManager.createQuery("SELECT pf FROM ProductoFinal pf, MateriaPrima mp WHERE pf=mp.prodFinal ",
 				ProductoFinal.class);
 
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<ProductoFinal> seleccionarFetchJoin() {
+		TypedQuery<ProductoFinal> myQuery = this.entityManager.createQuery("SELECT pf FROM ProductoFinal pf JOIN FETCH pf.materiasPrimas mp",
+				ProductoFinal.class);
 		return myQuery.getResultList();
 	}
 

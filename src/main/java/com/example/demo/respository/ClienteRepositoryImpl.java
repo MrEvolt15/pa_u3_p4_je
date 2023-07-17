@@ -121,4 +121,11 @@ public class ClienteRepositoryImpl implements ClienteRepository{
 		return miLista;
 	}
 
+	@Override
+	public List<Cliente> seleccionarFetchJoin() {
+		TypedQuery<Cliente> myQuery = this.entityManager.createQuery("SELECT c FROM Cliente c JOIN FETCH c.productos p",
+				Cliente.class);
+		return myQuery.getResultList();
+	}
+
 }

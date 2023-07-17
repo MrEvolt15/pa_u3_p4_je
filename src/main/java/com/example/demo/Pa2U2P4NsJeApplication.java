@@ -1,8 +1,5 @@
 package com.example.demo;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +12,7 @@ import com.example.demo.repository.modelo.MateriaPrima;
 import com.example.demo.repository.modelo.Producto;
 import com.example.demo.repository.modelo.ProductoFinal;
 import com.example.demo.service.ClienteService;
-import com.example.demo.service.EstudianteService;
 import com.example.demo.service.ProductoFinalService;
-import com.example.demo.service.ProductoService;
 
 
 @SpringBootApplication
@@ -60,6 +55,14 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 		for(Cliente e: clientes5) {
 			System.out.println(e);
 		}
+		List<Cliente> clienteF = this.clienteService.buscarFetchJoin();
+		for(Cliente e: clienteF) {
+			System.out.println(e.getNomCli());
+			System.out.println("FETCH Tiene los siguientes productos");
+			for(Producto p :e.getProductos()) {
+				System.out.println(p.getNombre());
+			}
+		}
 		
 		List<ProductoFinal> pf1 =this.finalService.buscarJoinWhere();
 		for(ProductoFinal e: pf1) {
@@ -84,6 +87,14 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 		List<ProductoFinal> pf6 =this.finalService.buscarInnerJoin();
 		for(ProductoFinal e: pf6) {
 			System.out.println(e);
+		}
+		List<ProductoFinal> pfFetch = this.finalService.buscarFetchJoin();
+		for(ProductoFinal e: pfFetch) {
+			System.out.println(e.getNomProf());
+			System.out.println("FETCH Tiene las siguientes materias primas");
+			for(MateriaPrima mp: e.getMatirasPrimas()) {
+				System.out.println(mp.getNombre());
+			}
 		}
 	}
 

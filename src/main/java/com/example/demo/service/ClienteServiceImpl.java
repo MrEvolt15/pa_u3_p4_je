@@ -80,4 +80,10 @@ public class ClienteServiceImpl implements ClienteService{
 		return this.clienteRepository.seleccionarInnerJoin();
 	}
 
+	@Override
+	public List<Cliente> buscarFetchJoin() {
+		// TODO Auto-generated method stub
+		return this.clienteRepository.seleccionarFetchJoin();
+	}
+
 }

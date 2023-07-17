@@ -17,4 +17,5 @@ public interface ProductoFinalRepository {
 	public List<ProductoFinal> seleccionarOuterFullJoin();
 	public List<ProductoFinal> seleccionarJoinWhere();
 	
+	public List<ProductoFinal> seleccionarFetchJoin();
 }

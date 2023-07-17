@@ -52,6 +52,12 @@ public class ProductoFinalServiceImpl implements ProductoFinalService{
 		// TODO Auto-generated method stub
 		return this.finalRepository.seleccionarJoinWhere();
 	}
+
+	@Override
+	public List<ProductoFinal> buscarFetchJoin() {
+		// TODO Auto-generated method stub
+		return this.finalRepository.seleccionarFetchJoin();
+	}
 	
 
 }

@@ -19,4 +19,6 @@ public interface ClienteRepository {
 	public List<Cliente> seleccionarOuterFullJoin();
 	public List<Cliente> seleccionarJoinWhere();
 	
+	public List<Cliente> seleccionarFetchJoin();
+	
 }

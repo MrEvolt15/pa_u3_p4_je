@@ -17,4 +17,5 @@ public interface ProductoFinalService {
 	public List<ProductoFinal> buscarOuterFullJoin();
 	public List<ProductoFinal> buscarJoinWhere();
 	
+	public List<ProductoFinal> buscarFetchJoin();
 }
