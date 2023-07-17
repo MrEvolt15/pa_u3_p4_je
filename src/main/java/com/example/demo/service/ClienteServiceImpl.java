@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.modelo.Cliente;
 import com.example.demo.repository.modelo.Producto;
+import com.example.demo.repository.modelo.ProductoFinal;
 import com.example.demo.respository.ClienteRepository;
 
 @Service
@@ -71,6 +72,12 @@ public class ClienteServiceImpl implements ClienteService{
 	public List<Cliente> buscarJoinWhere() {
 		// TODO Auto-generated method stub
 		return this.clienteRepository.seleccionarJoinWhere();
+	}
+
+	@Override
+	public List<Cliente> buscarInnerJoin() {
+		// TODO Auto-generated method stub
+		return this.clienteRepository.seleccionarInnerJoin();
 	}
 
 }

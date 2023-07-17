@@ -35,7 +35,7 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	/*
+	
 		List<Cliente> clientes1 =this.clienteService.buscarJoinWhere();
 		for(Cliente e: clientes1) {
 			System.out.println(e);
@@ -56,7 +56,11 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 		for(Producto e: productos1) {
 			System.out.println(e);
 		}
-		*/
+		List<Cliente> clientes5 = this.clienteService.buscarInnerJoin();
+		for(Cliente e: clientes5) {
+			System.out.println(e);
+		}
+		
 		List<ProductoFinal> pf1 =this.finalService.buscarJoinWhere();
 		for(ProductoFinal e: pf1) {
 			System.out.println(e);
@@ -75,6 +79,10 @@ public class Pa2U2P4NsJeApplication implements CommandLineRunner {
 		}
 		List<ProductoFinal> pf5 =this.finalService.buscarOuterRightJoin();
 		for(ProductoFinal e: pf5) {
+			System.out.println(e);
+		}
+		List<ProductoFinal> pf6 =this.finalService.buscarInnerJoin();
+		for(ProductoFinal e: pf6) {
 			System.out.println(e);
 		}
 	}
