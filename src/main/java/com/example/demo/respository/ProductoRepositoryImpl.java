@@ -1,19 +1,17 @@
 package com.example.demo.respository;
 
-import java.math.BigDecimal;
-import java.time.Instant;
+
 import java.time.LocalDate;
-import java.util.List;
+
 
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.repository.modelo.Estudiante;
 import com.example.demo.repository.modelo.Producto;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
+
 import jakarta.transaction.Transactional;
 @Repository
 @Transactional 

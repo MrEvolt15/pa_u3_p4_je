@@ -8,5 +8,6 @@ public interface CtaBancariaRepository {
 	public void eliminar(Integer id);
 	public CtaBancaria seleccionarPorID(Integer id);
 	public void actualizar(CtaBancaria cta);
-
+	public CtaBancaria seleccionarPorNumero(String numero);
+	
 }

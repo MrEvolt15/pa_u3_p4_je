@@ -1,17 +1,22 @@
 package com.example.demo.repository.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-@Table(name ="ctabancaria")
+@Table
 @Entity
 public class CtaBancaria {
 	
@@ -28,16 +33,20 @@ public class CtaBancaria {
 	@Column(name= "cta_tipo")
 	private String tipo;
 	
-	@Column(name= "cta_fechaapertura")
-	private LocalDateTime fechaApertura;
 	
 	@Column(name= "cta_saldo")
 	private BigDecimal saldo;
 	
-	@Column(name= "cta_cedulapropietario")
-	private String cedulaPropietario;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "prop_cta_id")
+	private Propietario propietario;
 	
-	//set get
+	@OneToMany(mappedBy = "ctaOrigen", fetch = FetchType.LAZY)
+	private List<Transferencia> transferenciasPerformed; 
+	@OneToMany(mappedBy = "ctaDestino", fetch = FetchType.LAZY)
+	private List<Transferencia> transferenciaRecived;
+	
+	//SETS Y GETS
 	public String getNumero() {
 		return numero;
 	}
@@ -50,28 +59,37 @@ public class CtaBancaria {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public LocalDateTime getFechaApertura() {
-		return fechaApertura;
-	}
-	public void setFechaApertura(LocalDateTime fechaApertura) {
-		this.fechaApertura = fechaApertura;
-	}
+	
 	public BigDecimal getSaldo() {
 		return saldo;
 	}
 	public void setSaldo(BigDecimal saldo) {
 		this.saldo = saldo;
 	}
-	public String getCedulaPropietario() {
-		return cedulaPropietario;
+	public Integer getId() {
+		return id;
 	}
-	public void setCedulaPropietario(String cedulaPropietario) {
-		this.cedulaPropietario = cedulaPropietario;
+	public void setId(Integer id) {
+		this.id = id;
 	}
-	@Override
-	public String toString() {
-		return "CtaBancaria [id=" + id + ", numero=" + numero + ", tipo=" + tipo + ", fechaApertura=" + fechaApertura
-				+ ", saldo=" + saldo + ", cedulaPropietario=" + cedulaPropietario + "]";
+	public Propietario getPropietario() {
+		return propietario;
 	}
+	public void setPropietario(Propietario propietario) {
+		this.propietario = propietario;
+	}
+	public List<Transferencia> getTransferenciasPerformed() {
+		return transferenciasPerformed;
+	}
+	public void setTransferenciasPerformed(List<Transferencia> transferenciasPerformed) {
+		this.transferenciasPerformed = transferenciasPerformed;
+	}
+	public List<Transferencia> getTransferenciaRecived() {
+		return transferenciaRecived;
+	}
+	public void setTransferenciaRecived(List<Transferencia> transferenciaRecived) {
+		this.transferenciaRecived = transferenciaRecived;
+	}
+	
 	
 }

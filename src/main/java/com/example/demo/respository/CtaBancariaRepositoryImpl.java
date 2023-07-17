@@ -6,6 +6,7 @@ import com.example.demo.repository.modelo.CtaBancaria;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @Repository
@@ -38,6 +39,13 @@ public class CtaBancariaRepositoryImpl implements CtaBancariaRepository{
 	public void actualizar(CtaBancaria cta) {
 		this.entityManager.merge(cta);
 		
+	}
+
+	@Override
+	public CtaBancaria seleccionarPorNumero(String numero) {
+		TypedQuery<CtaBancaria> myQuery = this.entityManager.createQuery("SELECT c FROM CtaBancaria c WHERE c.numero= :datoNumero", CtaBancaria.class);
+		myQuery.setParameter("datoNumero", numero);
+		return myQuery.getSingleResult();
 	}
 
 }
