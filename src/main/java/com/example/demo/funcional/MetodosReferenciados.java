@@ -6,14 +6,18 @@ import org.slf4j.LoggerFactory;
 public class MetodosReferenciados {
 	private static final Logger LOG = LoggerFactory.getLogger(MetodosReferenciados.class);
 
-	public Integer getId() {
+	public static Integer getId() {
 		return 8;
 	}
-	public void aceptar(String arg) {
-		String cadena = "Nelson";
+	public static String getIdHO() {
+		LOG.info("Metodos referenciado y HO");
+		return "Nelson Soria";
+	}
+	public static void aceptar(String arg) {
+		String cadena = "Joel";
 		LOG.info(cadena+ " "+ arg);
 	}
-	public boolean evaluar(Integer arg) {
+	public static boolean evaluar(Integer arg) {
 		
 		if(arg.compareTo(100)<0) {
 			return true;
@@ -23,12 +27,13 @@ public class MetodosReferenciados {
 		
 		
 	}
-	public Character aplicarf(Integer arg) {
+	
+	public static Character aplicarf(Integer arg) {
 		String resultado = "palabra secreta";
 		
 		return resultado.charAt(arg);
 	}
-	public String aplicaru(String arg) {
+	public static String aplicaru(String arg) {
 		String resultado = "val: ";
 		
 		return resultado.concat(arg);
