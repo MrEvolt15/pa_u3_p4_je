@@ -10,10 +10,10 @@ public class MetodosReferenciados {
 		return 8;
 	}
 	public static String getIdHO() {
-		LOG.info("Metodos referenciado y HO");
-		return "Nelson Soria";
+		LOG.info("Metodos referenciado");
+		return "Joel Espinosa";
 	}
-	public static void aceptar(String arg) {
+	public static void aceptar(Integer arg) {
 		String cadena = "Joel";
 		LOG.info(cadena+ " "+ arg);
 	}
@@ -28,14 +28,18 @@ public class MetodosReferenciados {
 		
 	}
 	
-	public static Character aplicarf(Integer arg) {
+	public static String aplicarf(Integer arg) {
 		String resultado = "palabra secreta";
 		
-		return resultado.charAt(arg);
+		return  "La letra es: "+resultado.charAt(arg);
 	}
 	public static String aplicaru(String arg) {
 		String resultado = "val: ";
 		
 		return resultado.concat(arg);
+	}
+	public static Integer aplicarUInteger(Integer arg) {
+		Integer valorInicial =0;
+		return valorInicial+arg;
 	}
 }
